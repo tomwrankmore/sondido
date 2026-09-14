@@ -16,7 +16,7 @@ export default function Nav() {
         href="/"
         aria-label="Home"
       >
-        Logo
+        Sonido Media
       </Link>
       <button
         type="button"

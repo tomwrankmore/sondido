@@ -2,7 +2,7 @@ const Footer = () => {
   return (
     <footer className="border-t border-gray-200 px-6 py-4">
       <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-4 text-xs text-gray-100 sm:flex-row">
-        <p>© {new Date().getFullYear()} Sondido. All rights reserved.</p>
+        <p>© {new Date().getFullYear()} Sonido. All rights reserved.</p>
 
         {/* <nav aria-label="Footer navigation">
           <ul className="flex gap-6">
