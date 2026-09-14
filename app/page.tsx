@@ -50,7 +50,10 @@ export default function Home() {
       <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
         <main className="w-full max-w-7xl bg-white px-6 py-16 dark:bg-black sm:px-10 lg:px-16">
           <div className="grid gap-16">
-            <section className="grid items-center gap-8 md:grid-cols-2 md:gap-16">
+            <section
+              className="grid items-center gap-8 md:grid-cols-2 md:gap-16"
+              id="about"
+            >
               <div>
                 <p className="mb-3 text-sm font-medium uppercase tracking-widest text-zinc-500">
                   01 / Discover
@@ -98,7 +101,10 @@ export default function Home() {
                 className="aspect-4/3 w-full rounded-2xl bg-linear-to-br from-sky-200 via-blue-400 to-indigo-700"
               />
             </section>
-            <section className="grid items-center gap-8 md:grid-cols-2 md:gap-16">
+            <section
+              className="grid items-center gap-8 md:grid-cols-2 md:gap-16"
+              id="create"
+            >
               <div
                 className="order-2 md:order-1"
                 aria-label="Orange placeholder image"
@@ -122,7 +128,7 @@ export default function Home() {
                 </p>
               </div>
             </section>
-            <section className="">
+            <section className="" id="work">
               <p className="mb-3 text-sm font-medium uppercase tracking-widest text-zinc-500">
                 03 / Connect
               </p>
