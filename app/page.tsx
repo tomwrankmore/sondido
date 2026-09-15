@@ -51,7 +51,7 @@ export default function Home() {
         <main className="w-full max-w-7xl bg-white px-6 py-16 dark:bg-black sm:px-10 lg:px-16">
           <div className="grid gap-16">
             <section
-              className="grid items-center gap-8 md:grid-cols-2 md:gap-16"
+              className="grid items-center gap-8 md:grid-cols-2 md:gap-16 pt-24"
               id="about"
             >
               <div>
@@ -102,7 +102,7 @@ export default function Home() {
               />
             </section>
             <section
-              className="grid items-center gap-8 md:grid-cols-2 md:gap-16"
+              className="grid items-center gap-8 md:grid-cols-2 md:gap-16 pt-24"
               id="create"
             >
               <div
@@ -128,7 +128,7 @@ export default function Home() {
                 </p>
               </div>
             </section>
-            <section className="" id="work">
+            <section className="pt-24" id="work">
               <p className="mb-3 text-sm font-medium uppercase tracking-widest text-zinc-500">
                 03 / Connect
               </p>
