@@ -1,4 +1,3 @@
-import React from "react";
 import AnimatedCopy from "./AnimatedCopy/AnimatedCopy";
 
 export default function Hero() {

@@ -42,68 +42,65 @@ export default function AnimatedCopy({
     () => {
       if (!containerRef.current) return;
 
-      let targets: Element[];
-      if (containerRef.current.hasAttribute("data-copy-wrapper")) {
-        targets = Array.from(containerRef.current.children);
-      } else {
-        targets = [containerRef.current];
-      }
+      const media = gsap.matchMedia();
 
-      const splits: SplitText[] = [];
-      const blurLayers: HTMLSpanElement[] = [];
+      media.add("(min-width: 768px)", () => {
+        const targets = containerRef.current!.hasAttribute("data-copy-wrapper")
+          ? Array.from(containerRef.current!.children)
+          : [containerRef.current!];
+        const splits: SplitText[] = [];
+        const blurLayers: HTMLSpanElement[] = [];
 
-      targets.forEach((target) => {
-        const split = new SplitText(target, {
-          type: "lines",
-          linesClass: "line",
+        targets.forEach((target) => {
+          const split = new SplitText(target, {
+            type: "lines",
+            linesClass: "line",
+          });
+          split.lines.forEach((line) => blurLayers.push(wrapLineForBlur(line)));
+          splits.push(split);
         });
 
-        split.lines.forEach((line) => {
-          blurLayers.push(wrapLineForBlur(line));
-        });
-        splits.push(split);
+        gsap.set(blurLayers, { filter: BLUR_START });
+
+        if (mode === "scrub") {
+          gsap.to(blurLayers, {
+            filter: BLUR_END,
+            ease: "power3.out",
+            stagger: 0.1,
+            scrollTrigger: {
+              trigger: containerRef.current,
+              start: "top 75%",
+              end: "bottom 75%",
+              scrub: true,
+            },
+          });
+        } else if (mode === "scroll") {
+          gsap.to(blurLayers, {
+            filter: BLUR_END,
+            duration: 1.5,
+            ease: "power3.out",
+            stagger: 0.1,
+            delay,
+            scrollTrigger: {
+              trigger: containerRef.current,
+              start: "top 80%",
+              once: true,
+            },
+          });
+        } else {
+          gsap.to(blurLayers, {
+            filter: BLUR_END,
+            duration: 1.5,
+            ease: "power3.out",
+            stagger: 0.1,
+            delay,
+          });
+        }
+
+        return () => splits.forEach((split) => split.revert());
       });
 
-      gsap.set(blurLayers, { filter: BLUR_START });
-
-      if (mode === "scrub") {
-        gsap.to(blurLayers, {
-          filter: BLUR_END,
-          ease: "power3.out",
-          stagger: 0.1,
-          scrollTrigger: {
-            trigger: containerRef.current,
-            start: "top 75%",
-            end: "bottom 75%",
-            scrub: true,
-          },
-        });
-      } else if (mode === "scroll") {
-        gsap.to(blurLayers, {
-          filter: BLUR_END,
-          duration: 1.5,
-          ease: "power3.out",
-          stagger: 0.1,
-          delay,
-          scrollTrigger: {
-            trigger: containerRef.current,
-            start: "top 80%",
-            once: true,
-          },
-        });
-      } else {
-        gsap.to(blurLayers, {
-          filter: BLUR_END,
-          duration: 1.5,
-          ease: "power3.out",
-          stagger: 0.1,
-          delay,
-        });
-      }
-
-      return () => {
-        splits.forEach((split) => split.revert());
-      };
+      return () => media.revert();
     },
     { scope: containerRef },
   );

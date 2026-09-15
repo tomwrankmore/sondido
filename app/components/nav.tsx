@@ -8,7 +8,7 @@ export default function Nav() {
 
   return (
     <nav
-      className="fixed top-0 box-border flex w-full items-start justify-between px-4 py-4 min-[481px]:items-center min-[481px]:px-8 min-[481px]:py-5 z-99"
+      className="fixed top-0 z-99 box-border flex w-full items-start justify-between bg-black/10 px-4 py-4 backdrop-blur-md min-[481px]:items-center min-[481px]:px-8 min-[481px]:py-5"
       aria-label="Main navigation"
     >
       <Link
